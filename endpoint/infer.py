@@ -24,7 +24,6 @@ transform = transforms.Compose([
     transforms.ToTensor()
 ])
 
-from typing import List, Union
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 
