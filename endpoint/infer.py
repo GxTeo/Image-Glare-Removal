@@ -43,19 +43,12 @@ class ImageDataset(Dataset):
         return 1  # There's only one image
 
     def __getitem__(self, idx):
-        image = Image.open(BytesIO(self.image_bytes))
-        width, height = image.size        
-        truth_image = image.crop((0, 0, width // 3, height))
-        glare_image = image.crop((width // 3, 0, (width // 3) * 2, height))
-
+        glare_image = Image.open(BytesIO(self.image_bytes))
         if self.transform:
-            truth_image = self.transform(truth_image)
             glare_image = self.transform(glare_image)
-
-            truth_image = truth_image.expand(3, -1, -1)
             glare_image = glare_image.expand(3, -1, -1)
 
-        return glare_image, truth_image
+        return glare_image
 
 app = FastAPI()
 
@@ -68,22 +61,18 @@ async def ping():
 
 @app.post("/infer")
 async def infer(image: UploadFile = File(...)):
-
     try:
         image_bytes = await image.read()
         dataset = ImageDataset(image_bytes, transform=transform)
 
-        for glare_image, truth_image in dataset:
+        for glare_image in dataset:
             glare_image = glare_image.unsqueeze(0).to(device)
-            truth_image = truth_image.unsqueeze(0).to(device)
-
             with torch.no_grad():
                 predicted_image = model(glare_image)
 
             predicted_image = predicted_image.squeeze(0).cpu().numpy()
             predicted_image = predicted_image.transpose(1, 2, 0)
             predicted_image= transforms.ToPILImage()(predicted_image)
-
 
             # Convert image to binary format
             buffered = BytesIO()
