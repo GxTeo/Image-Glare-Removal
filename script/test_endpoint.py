@@ -39,8 +39,6 @@ if __name__ == "__main__":
     truth_image = image.crop((0, 0, width // 3, height))
     glare_image = image.crop((width // 3, 0, (width//3)*2, height))
 
-
-
     # Save the glare image
     glare_image.save("test_glare_image.png")
     test_infer("test_glare_image.png")
