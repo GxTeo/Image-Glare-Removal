@@ -1,3 +1,21 @@
+## Virtual Environment
+
+First, navigate to your project directory in the terminal. Then, create a virtual environment by running:
+
+```bash
+python3 -m venv virtualenv
+```
+
+Activate the virtual environment.
+```bash
+source venv/bin/activate
+```
+
+Install Required Packages
+```bash
+pip install -r requirements.txt
+```
+
 ## Build the Docker Image
 
 To build the Docker image for the FastAPI application, navigate to the project's root directory where the Dockerfile is located and run the following command:
