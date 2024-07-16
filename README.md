@@ -1,3 +1,25 @@
+## Folder Navigation Overview
+
+This section provides an overview of the key components within the project structure, detailing the purpose and location of each artefact.
+
+### Artefacts
+
+- **Artefact 1**: Jupyter Notebook for GCNet Model
+  - **Location**: `notebook/GCNet.ipynb`
+  - **Description**: This Jupyter Notebook contains the model training and evaluation for the assignment
+
+- **Artefact 2**: Inference Endpoint
+  - **Location**: `endpoint/infer.py`
+  - **Description**: Source code for the API endpoints
+
+- **Artefact 3**: Docker Configuration
+  - **Location**: `Dockerfile`
+
+- **Artefact 4**: Endpoint Testing Script
+  - **Location**: `script/test_endpoint.py`
+  - **Description**: A test script to test the functionality and responsiveness of the model's inference endpoint.
+
+
 ## Virtual Environment
 
 First, navigate to your project directory in the terminal. Then, create a virtual environment by running:
