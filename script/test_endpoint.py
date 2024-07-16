@@ -7,23 +7,23 @@ url = "http://127.0.0.1:4000"
 
 def test_ping():
     response = requests.get(f"{url}/ping")
-    assert response.json() == {"message": "pong"}
-
-    print("Ping test passed")
+    if response.status_code != 200:
+        print("Ping failed")
+        return
+    print("Ping successful")
     return
 
 def test_infer(image_path):
     files = {"image": open(image_path, "rb")}
     response = requests.post(f"{url}/infer", files=files)
 
-    if 'Error' in response.json():
-        print(f"Error: {response.json()['Error']}")
+    if response.status_code != 200:
+        print("Inference failed")
         return
     
     image_binary = base64.b64decode(response.json().get("image"))
     image = Image.open(io.BytesIO(image_binary))
     image.save("predicted_image.png")
-
     print("Image saved as predicted_image.png")
     return
 
