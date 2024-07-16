@@ -54,7 +54,7 @@ app = FastAPI()
 @app.get("/ping")
 async def ping():
     try:
-        return JSONResponse(content={"message": "pong"})
+        return JSONResponse(content={"message": "pong"}, status_code=200)
     except Exception as e:
         return JSONResponse(content={"message": f"Error: {e}"})
 
@@ -79,7 +79,7 @@ async def infer(image: UploadFile = File(...)):
             img_binary = buffered.getvalue()
             img_base64 = base64.b64encode(img_binary).decode("utf-8")
 
-            return JSONResponse(content={"image": img_base64})
+            return JSONResponse(content={"image": img_base64}, status_code=200)
         
     except Exception as e:
         return JSONResponse(content={"Error": f"Error: {e}"})
