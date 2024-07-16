@@ -10,6 +10,7 @@ def test_ping():
     if response.status_code != 200:
         print("Ping failed")
         return
+    assert response.json().get("message") == "pong"
     print("Ping successful")
     return
 
