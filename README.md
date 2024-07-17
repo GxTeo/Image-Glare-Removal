@@ -56,7 +56,7 @@ docker run -d -p 4000:4000 glare-removal-api
 In your terminal, navigate to the ```script``` folder and run the test script with the following command
 
 ```bash
-python3 test_endpoint.py
+pytest test_endpoint.py
 ```
 
 The API ```infer``` endpoint expect a single image for inference and returns the JSON response containing the binary value of the enhanced image
