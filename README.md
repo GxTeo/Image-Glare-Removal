@@ -30,7 +30,7 @@ python3 -m venv virtualenv
 
 Activate the virtual environment.
 ```bash
-source venv/bin/activate
+source virtualenv/bin/activate
 ```
 
 Install Required Packages
@@ -61,4 +61,4 @@ pytest test_endpoint.py
 
 The API ```infer``` endpoint expect a single image for inference and returns the JSON response containing the binary value of the enhanced image
 
-In the test script, I was just using a test image from the  ```SD1``` dataset hence, ensure that you have the dataset in the same directory as the ```script``` folder. As the endpoint expects a single glare image, there was a need to crop the glare image. The output image would be saved in the ```script``` folder as ```predicted_image.png```.
+In the test script, I was just using a test image from the  ```SD1``` dataset. As the endpoint expects a single glare image, there was a need to crop the glare image. The output image would be saved in the ```script``` folder as ```predicted_image.png```.

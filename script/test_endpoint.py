@@ -8,17 +8,6 @@ import base64
 url = "http://127.0.0.1:4000"
 @pytest.fixture()
 def image_path():
-    # Given that we are using the image from the validation dataset, 
-    # we need to crop out the glare image
-    image_path = "../SD1/val/006.png"
-    image = Image.open(image_path)
-
-    width, height = image.size
-    truth_image = image.crop((0, 0, width // 3, height))
-    glare_image = image.crop((width // 3, 0, (width//3)*2, height))
-
-    # Save the glare image
-    glare_image.save("test_glare_image.png")
     return "test_glare_image.png"
 
 
